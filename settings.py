@@ -74,6 +74,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    '/home/shauns/py/djproj/site_static',
 )
 
 # List of finder classes that know how to find static files in
@@ -171,11 +172,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 'django.core.context_processors.i18n',
 'django.core.context_processors.request',
 'django.core.context_processors.media',
+'django.core.context_processors.static'
 )
 
 # CMS
 CMS_TEMPLATES = (
 ('example.html', 'Example Template'),
+('boilertest.html', 'HTML5 Boilerplate Test'),
 )
 MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + (
 'cms.middleware.page.CurrentPageMiddleware',
