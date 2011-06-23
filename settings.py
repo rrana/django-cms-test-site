@@ -181,6 +181,7 @@ CMS_TEMPLATES = (
 ('boilertest.html', 'HTML5 Boilerplate Test'),
 )
 MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + (
+'cms.middleware.multilingual.MultilingualURLMiddleware',
 'cms.middleware.page.CurrentPageMiddleware',
 'cms.middleware.user.CurrentUserMiddleware',
 'cms.middleware.toolbar.ToolbarMiddleware',
@@ -199,7 +200,9 @@ CMS_MEDIA_ROOT = STATIC_ROOT + CMS_MEDIA_PATH
 
 CMS_LANGUAGES = (
 ('en', gettext('English')),
+('fr', gettext('French')),
 )
+LANGUAGES = CMS_LANGUAGES
 CMS_MEDIA_URL = CMS_MEDIA_PATH
 
 CMS_PAGE_MEDIA_PATH = 'cms_page_media/'
