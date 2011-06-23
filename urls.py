@@ -2,6 +2,8 @@ from django.conf.urls.defaults import *
 from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from cms.sitemaps import CMSSitemap
+
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -16,13 +18,19 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+
+url(r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': {'cmspages': CMSSitemap}}),
+
+url(r'^weblog/', include('zinnia.urls')),
+url(r'^comments/', include('django.contrib.comments.urls')),
+
 url(r'^', include('cms.urls')),
 )
 
-#if settings.DEBUG:
-#	urlpatterns += patterns('',
-#		(r'^' + settings.MEDIA_URL.lstrip('/'), include('appmedia.urls')),
-#	) + urlpatterns
+if settings.DEBUG:
+	urlpatterns += patterns('',
+		(r'^' + settings.MEDIA_URL.lstrip('/'), include('appmedia.urls')),
+	) + urlpatterns
 
 urlpatterns += staticfiles_urlpatterns()
 #assert False

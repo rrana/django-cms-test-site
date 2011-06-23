@@ -75,6 +75,7 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     '/home/shauns/py/djproj/site_static',
+    '/home/shauns/py/django-blog-zinnia/zinnia/media',
 )
 
 # List of finder classes that know how to find static files in
@@ -141,6 +142,22 @@ INSTALLED_APPS = (
 
 'django_extensions',
 'sekizai',
+
+'django.contrib.sitemaps',
+
+'filer',
+'easy_thumbnails',
+
+'cmsplugin_filer_file',
+'cmsplugin_filer_folder',
+'cmsplugin_filer_image',
+'cmsplugin_filer_teaser',
+'cmsplugin_filer_video',
+
+'zinnia',
+'tagging', 
+'django.contrib.comments',
+'zinnia.plugins',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -172,8 +189,14 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 'django.core.context_processors.i18n',
 'django.core.context_processors.request',
 'django.core.context_processors.media',
-'django.core.context_processors.static'
+'django.core.context_processors.static',
+'zinnia.context_processors.version',
+'zinnia.context_processors.media',
 )
+
+# BLOGGING
+ZINNIA_MEDIA_URL = STATIC_URL + 'zinnia/'
+FOOBAR = 'foobar'
 
 # CMS
 CMS_TEMPLATES = (
@@ -217,3 +240,10 @@ CMS_REDIRECTS = False
 CMS_APPHOOKS = ()
 
 CMS_SITE_LANGUAGES = {}
+
+THUMBNAIL_PROCESSORS = (
+'easy_thumbnails.processors.colorspace',
+'easy_thumbnails.processors.autocrop',
+'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+'easy_thumbnails.processors.filters',
+)
