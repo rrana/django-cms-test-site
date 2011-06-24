@@ -19,6 +19,8 @@
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	<link rel="stylesheet" href="{{STATIC_URL}}css/style.css?v=2">
         <link rel="stylesheet" href="{{STATIC_URL}}css/960.css">
+
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Pacifico:regular&v1">
 	
 	{% render_block "css" %}
 
@@ -26,15 +28,16 @@
 </head>
 <body>
 	{% cms_toolbar %}
-	<div id="container">
-		<header>
-			{% placeholder header %}
-<nav id="top_nav">{% show_menu 0 100 100 100 %}</nav>
-<nav>    {% language_chooser %}</nav>
+	<div id="container" class="container_12">
+		<header class="container_12">
+<p class='slogan grid_12 omega'>"Bringing home the global message"</p>
+			<div class="grid_12">{% placeholder header %}</div>
+<nav id="top_nav" class="grid_12"><ul>{% show_menu 0 100 100 100 %}</ul></nav>
+{% language_chooser %}
 		</header>
 
 		<div id="main" role="main" class="container_12">			
-			<div class="grid_12 alpha omega">{% placeholder main %}</div>
+			<div class="grid_12">{% placeholder main %}</div>
 		</div>
 
 		<footer>
@@ -48,6 +51,33 @@
 	<script>!window.jQuery && document.write(unescape('%3Cscript src="{{STATIC_URL}}js/libs/jquery-1.5.1.min.js"%3E%3C/script%3E'))</script>
 	<script src="{{STATIC_URL}}js/plugins.js"></script>
 	<script src="{{STATIC_URL}}js/script.js"></script>
+    <script>  
+        (function($){  
+      
+            //cache nav  
+            var nav = $("#top_nav");  
+      
+            //add indicators and hovers to submenu parents  
+            nav.find("li").each(function() {  
+                if ($(this).find("ul").length > 0) {  
+                    $(this).mouseover(function() {
+                    });
+      
+                    $("<span>").text("^").appendTo($(this).children(":first"));  
+      
+                    //show subnav on hover  
+                    $(this).mouseenter(function() {  
+                        $(this).find("ul").stop(true, true).slideDown('fast');  
+                    });  
+      
+                    //hide submenus on exit  
+                    $(this).mouseleave(function() {  
+                        $(this).find("ul").stop(true, true).slideUp('fast');  
+                    });  
+                }  
+            });  
+        })(jQuery);  
+    </script>  
 	<!--[if lt IE 7 ]>
 	<script src="{{STATIC_URL}}js/libs/dd_belatedpng.js"></script>
 	<script> DD_belatedPNG.fix('img, .png_bg');</script>
